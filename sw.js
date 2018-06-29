@@ -1,6 +1,6 @@
 const CACHE_NAME = 'currencyConverter-cache-v4';
 const urlsToCache = [
-  '/',
+  '/index.html',
   '/css/style.css',
   '/index.js',
   'https://res.cloudinary.com/sccofield/image/upload/v1530287626/15xvbd5_nfzfkk.png',
