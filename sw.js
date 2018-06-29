@@ -1,8 +1,10 @@
-const CACHE_NAME = 'my-site-cache-v1';
+const CACHE_NAME = 'currencyConverter-cache-v2';
 const urlsToCache = [
   '/',
   '/css/style.css',
-  '/index.js'
+  '/index.js',
+  '/images/15xvbd5.png',
+  'https://free.currencyconverterapi.com/api/v5/currencies'
 ];
 
 self.addEventListener('install', (event) => {
@@ -16,15 +18,25 @@ self.addEventListener('install', (event) => {
   );
 });
 
+self.addEventListener('activate', (event) => {
+  event.waitUntil(
+    caches.keys().then((cacheNames) => {
+      return Promise.all(
+        cacheNames.filter((cacheName) => {
+          return cacheName.startsWith('currency') &&
+            cacheName != CACHE_NAME;
+        }).map((cacheName) => {
+          return cache.delete(cacheName);
+        })
+      )
+    })
+  )
+})
+
 self.addEventListener('fetch', (event) => {
   event.respondWith(
-    fetch(event.request).then((response)=>{
-      if (response.status == 404){
-        return new Response('page not found');
-      }
-      return response
-    }).catch((error) => {
-      return new Response('what totally fail')
+    caches.match(event.request).then((response) => {
+      return response || fetch(event.request);
     })
   );
 });
