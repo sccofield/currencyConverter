@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Currency converter</title>
+  <meta name="description" content="Currency converter">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+  <main>
+    
+    <div class="converter">
+      <div class="converter__title">
+        <h1>Currency Converter</h1>
+      </div>
+      <div id="resultDiv">
+      </div>
+
+      <div id="error">
+      </div>
+
+      <div>
+        <form class="currencyForm" id ='currencyForm' onsubmit="return onFormSubmit(event) ">
+          <div class="form-group">
+            <label>Amount:</label>
+            <input id="amount" type="number" placeholder="" required/>
+          </div>
+          <div class="form-group">
+            <label>From:</label>
+            <select name="fromCurrency" id="fromCurrency" class="so-flow" required>
+              <option value="">Select Currency</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>To:</label>
+            <select name="toCurrency" id="toCurrency" class="so-flow" required>
+              <option value="">Select Currency</option>
+            </select>
+          </div>
+          <div class="form-group">
+              <button onClick="onFormSubmit(event)">Convert</button>
+            <!-- <input type="submit" class="form-submit" value="Convert"/> -->
+          </div>
+        </form>
+      </div>
+    </div>
+  </main>
+
+
+  <script src="index.js"></script>
+</body>
+
+</html>
