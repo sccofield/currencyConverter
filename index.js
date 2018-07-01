@@ -1,3 +1,5 @@
+console.log('>>>>>>>','here we go ')
+
 const registerServiceWorker = () => {
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
@@ -45,11 +47,12 @@ const onFormSubmit = async (event) => {
   const amount = document.getElementById('amount').value
   const fromCurrency = document.getElementById('fromCurrency').value
   const toCurrency = document.getElementById('toCurrency').value
-  const converterApi = `https://free.currencyconverterapi.com/api/v5/convert?q=${fromCurrency}_${toCurrency}&compact=y`
+  const converterApi = `https://free.currencyconverterapi.com/api/v5/convert?q=${fromCurrency}_${toCurrency}&compact=ultra`
   
    let response = await fetch(converterApi);
    const result = await response.json();
-   const conversionRate = result[`${fromCurrency}_${toCurrency}`].val
+   console.log(result)
+   const conversionRate = result[`${fromCurrency}_${toCurrency}`]
    const newAmount = amount * conversionRate
    let resultDiv = document.getElementById('resultDiv')
    resultDiv.classList.add("resultDiv");
@@ -58,6 +61,7 @@ const onFormSubmit = async (event) => {
    resultDiv.innerHTML = finalResult;
 
 }
+
 
 
 

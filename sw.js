@@ -1,8 +1,8 @@
 const CACHE_NAME = 'currencyConverter-cache-v4';
 const urlsToCache = [
-  '/index.html',
-  '/css/style.css',
-  '/index.js',
+  './index.html',
+  './css/style.css',
+  './index.js',
   'https://res.cloudinary.com/sccofield/image/upload/v1530287626/15xvbd5_nfzfkk.png',
   'https://free.currencyconverterapi.com/api/v5/currencies'
 ];
@@ -12,7 +12,6 @@ self.addEventListener('install', (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME)
       .then((cache) => {
-        console.log('Opened cache');
         return cache.addAll(urlsToCache);
       })
   );
@@ -40,18 +39,4 @@ self.addEventListener('fetch', (event) => {
   );
 });
 
-// self.addEventListener('fetch', (event) => {
-//   console.log('hello world new')
-//   event.respondWith(
-//     caches.match(event.request)
-//       .then((response) => {
-//         // Cache hit - return response
-//         if (response) {
-//           return response;
-//         }
-//         return fetch(event.request);
-//       }
-//     )
-//   );
-// });
 
